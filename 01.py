@@ -8,7 +8,6 @@ def steps(start, delta, count):
     sign = int(math.copysign(1, delta))
     return [start] * count if delta == 0 else range(start + sign, start + delta + sign, sign)
 
-
 with open('01.txt', 'r') as file:
     input = file.read()
 
