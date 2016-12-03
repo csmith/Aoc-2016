@@ -19,7 +19,7 @@ moves = [(movement_lookup[move[0]], int(move[1:])) for move in input.split(', ')
 heading = 0
 history = [(0, 0)]
 for move in moves:
-    heading = (heading + move[0] + 4) % 4
+    heading = (heading + move[0]) % 4
     delta = map(operator.mul, direction_lookup[heading], (move[1], move[1]))
     delta_mag = max(abs(delta[0]), abs(delta[1]))
     history += zip(steps(history[-1][0], delta[0], delta_mag),
