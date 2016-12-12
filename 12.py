@@ -12,22 +12,19 @@ def value(x):
 def cpy(args): registers[args[1]] = value(args[0])
 def inc(args): registers[args[0]] += 1
 def dec(args): registers[args[0]] -= 1
-def jnz(args): global pc; pc += (0 if value(args[0]) == 0 else value(args[1]) - 1)
+def jnz(args): registers['pc'] += 0 if value(args[0]) == 0 else value(args[1]) - 1
 
 def run():
-    global pc
-    while pc < len(instr):
-        globals()[instr[pc][0]](instr[pc][1:])
-        pc += 1
+    while registers['pc'] < len(instr):
+        globals()[instr[registers['pc']][0]](instr[registers['pc']][1:])
+        registers['pc'] += 1
 
-registers = {'a': 0, 'b': 0, 'c': 0, 'd': 0}
-pc = 0
+registers = {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'pc': 0}
 run()
 
 print("Stage 1: %s" % registers['a'])
 
-registers = {'a': 0, 'b': 0, 'c': 1, 'd': 0}
-pc = 0
+registers = {'a': 0, 'b': 0, 'c': 1, 'd': 0, 'pc': 0}
 run()
 
 print("Stage 2: %s" % registers['a'])
