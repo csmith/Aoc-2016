@@ -34,7 +34,7 @@ pickups = lambda items: map(set, itertools.chain(itertools.combinations(items, 2
 
 # Returns an enumeration of possible destinations for the lift (up or down one floor)
 dests = lambda layout: filter(is_floor, [my_floor_index(layout) + 1, my_floor_index(layout) - 1])
-is_floor = lambda i: i >= 0 and i < len(floors)
+is_floor = lambda i: 0 <= i < len(floors)
 
 # Returns an enumeration of possible moves that could be made from the given state
 moves = lambda layout: itertools.product(pickups(items(my_floor(layout))), dests(layout))
@@ -74,7 +74,7 @@ def run(floors):
         for items, to in moves(layout):
             items = set(items).union({lift})
             new_layout = [set(floor) - items for floor in layout]
-            new_layout[to] |= (items)
+            new_layout[to] |= items
             if valid_layout(new_layout):
                 serialised = serialise(new_layout)
                 if serialised not in distances:

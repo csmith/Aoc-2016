@@ -14,8 +14,8 @@ with open('08.txt', 'r') as file:
         elif words[1] == 'row':
             lights[i] = np.roll(lights[i], j)
         else:
-            lights[:,i] = np.roll(lights[:,i], j)
-        
+            lights[:, i] = np.roll(lights[:, i], j)
+
     print("Part one: %s" % np.sum(lights))
     print("Part two:")
-    print('\n'.join(''.join('\u2588' if p else ' '  for p in row) for row in lights))
+    print('\n'.join(''.join('\u2588' if p else ' ' for p in row) for row in lights))

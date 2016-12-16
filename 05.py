@@ -6,8 +6,10 @@ from multiprocessing import Pool
 
 door = 'abbhdwsy'
 
+
 def hash(x):
     return hashlib.md5((door + str(x)).encode('utf-8')).hexdigest()
+
 
 pool = Pool()
 hashes = pool.imap(hash, itertools.count(), 10000)

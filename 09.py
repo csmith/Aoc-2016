@@ -9,7 +9,8 @@ rparse = lambda x: parse(x, rparse)
 def parse(data, rfun=len):
     # Find the first bracketed part (if one exists)
     index, bracket = data.find('('), data.find(')')
-    if index == -1: return len(data)
+    if index == -1:
+        return len(data)
 
     # Grab the (NxR) values from the brackets
     num, reps = map(int, data[index + 1:bracket].split('x'))

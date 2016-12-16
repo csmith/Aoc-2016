@@ -9,7 +9,7 @@ with open('04.txt', 'r') as file:
     checksum = lambda x: re.sub(r'(.)\1+', r'\1',
                                 ''.join(sorted(x.name.replace('-', ''),
                                                key=lambda c: -128 * x.name.count(c) + ord(c)))
-                               )[:5]
+                                )[:5]
     valid = [room for room in rooms if room.checksum == checksum(room)]
     print("Part one: %s" % sum([int(room.sector) for room in valid]))
 
