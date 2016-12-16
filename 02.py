@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import operator
 
@@ -17,7 +17,7 @@ parts = {1: {(0, 0): '1', (1, 0): '2', (2, 0): '3',
                                        (2, 4): 'D'}}
 
 for part, keys in parts.items():
-    pos = keys.keys()[keys.values().index('5')]
+    pos = list(keys.keys())[list(keys.values()).index('5')]
     ans = ''
     for line in input:
         for move in map(dirs.get, line):

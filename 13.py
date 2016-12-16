@@ -8,7 +8,7 @@ high = lambda x: sum([1 for d in bin(x) if d == '1'])
 wall = lambda x, y: high(x*x + 3*x + 2*x*y + y + y*y + input) % 2 == 1
 all_moves = lambda x, y: [(x-1, y), (x+1, y), (x, y-1), (x, y+1)]
 moves = lambda x, y: (m for m in all_moves(x, y) if m[0] >= 0 and m[1] >= 0 and not wall(*m))
-queue = set([(1, 1)])
+queue = {(1, 1)}
 visited = set()
 distance = {}
 steps = 0

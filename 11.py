@@ -27,7 +27,7 @@ my_floor = lambda layout: next(floor for floor in layout if lift in floor)
 my_floor_index = lambda layout: next(i for i, floor in enumerate(layout) if lift in floor)
 
 # Returns just the items on a floor (not the lift)
-items = lambda floor: set(floor) - set([lift])
+items = lambda floor: set(floor) - {lift}
 
 # Returns an enumeration of sets of items that could potentially be picked up (any combo of 1 or 2 items)
 pickups = lambda items: map(set, itertools.chain(itertools.combinations(items, 2), itertools.combinations(items, 1)))
@@ -66,14 +66,13 @@ def run(floors):
             mappings['%s-compatible microchip' % key] = '%iM' % i
         return '|'.join(''.join(sorted(mappings[item] for item in floor)) for floor in layout)
 
-
     # Evaluates each possible move for the given layout.
     # Moves are checked to ensure they're valid and serialised to ensure they haven't been visited
     # Returns a list of new layouts for the next step, or False if a solution was encountered
     def domoves(layout, steps):
         queued = []
         for items, to in moves(layout):
-            items = set(items).union(set([lift]))
+            items = set(items).union({lift})
             new_layout = [set(floor) - items for floor in layout]
             new_layout[to] |= (items)
             if valid_layout(new_layout):
@@ -85,7 +84,6 @@ def run(floors):
 
                         return False
         return queued
-
 
     # Run repeated iterations until we hit a winning result, then immediately returns the step
     # count.

@@ -1,8 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
-from enum import IntEnum
 import math
 import operator
+
 
 def steps(start, delta, count):
     sign = int(math.copysign(1, delta))
@@ -20,7 +20,7 @@ heading = 0
 history = [(0, 0)]
 for move in moves:
     heading = (heading + move[0]) % 4
-    delta = map(operator.mul, direction_lookup[heading], (move[1], move[1]))
+    delta = list(map(operator.mul, direction_lookup[heading], (move[1], move[1])))
     delta_mag = max(abs(delta[0]), abs(delta[1]))
     history += zip(steps(history[-1][0], delta[0], delta_mag),
                    steps(history[-1][1], delta[1], delta_mag))
