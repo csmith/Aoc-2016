@@ -2,7 +2,7 @@
 
 import collections
 
-with open('10.txt', 'r') as file:
+with open('data/10.txt', 'r') as file:
     targets = collections.defaultdict(lambda: {'inputs': [], 'low': -1, 'high': -1})
     lines = list(map(str.split, map(str.strip, file.readlines())))
     for instr in lines:

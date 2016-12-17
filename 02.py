@@ -2,7 +2,7 @@
 
 import operator
 
-with open('02.txt', 'r') as file:
+with open('data/02.txt', 'r') as file:
     input = [x.strip() for x in file.readlines()]
 
 dirs = {'U': (0, -1), 'D': (0, 1), 'L': (-1, 0), 'R': (1, 0)}

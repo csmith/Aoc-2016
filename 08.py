@@ -3,7 +3,7 @@
 import re
 import numpy as np
 
-with open('08.txt', 'r') as file:
+with open('data/08.txt', 'r') as file:
     lines = list(map(str.strip, file.readlines()))
     lights = np.zeros((6, 50), dtype=bool)
     for line in lines:

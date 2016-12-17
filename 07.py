@@ -15,7 +15,7 @@ hypernet = lambda x: re.sub(r'^.*?\[|\].*?\[|\].*?$', '#', x)
 # Returns all supernet parts (outside of brackets) of x
 supernet = lambda x: re.sub(r'\[.*?\]', '#', x)
 
-with open('07.txt', 'r') as file:
+with open('data/07.txt', 'r') as file:
     ips = list(map(str.strip, file.readlines()))
     # tls: has at least one ABBA that's not also in its hypernet sections
     tls = set(filter(abba, ips)) - set(filter(lambda ip: abba(hypernet(ip)), ips))

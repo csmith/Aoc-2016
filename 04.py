@@ -3,7 +3,7 @@
 import re
 from collections import namedtuple
 
-with open('04.txt', 'r') as file:
+with open('data/04.txt', 'r') as file:
     Room = namedtuple('Room', 'name sector checksum')
     rooms = [Room(*re.search(r'^(.*?)-([0-9]+)\[(.*?)\]$', l).groups()) for l in file.readlines()]
     checksum = lambda x: re.sub(r'(.)\1+', r'\1',

@@ -6,7 +6,7 @@ import itertools, re
 lift = '*YOU ARE HERE*'
 
 # Read the input
-with open('11.txt', 'r') as file:
+with open('data/11.txt', 'r') as file:
     lines = list(map(str.strip, file.readlines()))
     floors = [re.findall(r'\b(\S+ (?:generator|microchip))\b', line) for line in lines]
     floors[0].append(lift)

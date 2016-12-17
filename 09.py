@@ -23,7 +23,7 @@ def parse(data, rfun=len):
             + parse(data[bracket + 1 + num:], rfun))
 
 
-with open('09.txt', 'r') as file:
+with open('data/09.txt', 'r') as file:
     input = re.sub('\s+', '', file.read())
     print(parse(input))
     print(rparse(input))

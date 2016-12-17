@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-with open('12.txt', 'r') as file:
+with open('data/12.txt', 'r') as file:
     instr = list(map(str.split, map(str.strip, file.readlines())))
 
 def value(x):

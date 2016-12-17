@@ -24,7 +24,7 @@ def run(lines):
     times = (i for i, c in enumerate(combos) if all(p == 0 for p in c))
     return next(times)
 
-with open('15.txt', 'r') as file:
+with open('data/15.txt', 'r') as file:
     lines = file.readlines()
     print("Step 1: %s" % run(lines))
     print("Step 2: %s" % run(lines + ['Disc #7 has 11 positions; at time=0, it is at position 0.']))
