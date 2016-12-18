@@ -1,5 +1,12 @@
 #!/usr/bin/python3
 
+"""Solution for day 17 of Advent of Code 2016.
+
+Implements an A* search algorithm for finding the shortest path (which wasn't really necessary given part two!)
+The heapq module is used to keep the queue sorted in priority order, with the priorities calculated as the
+current distance travelled plus the Manhattan distance to the end (so the first path found will be the shortest).
+"""
+
 import functools
 import hashlib
 import heapq

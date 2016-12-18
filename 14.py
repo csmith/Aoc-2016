@@ -1,5 +1,18 @@
 #!/usr/bin/python3
 
+"""Solution for day 14 of Advent of Code 2016.
+
+The actual logic for this solution is contained in the matches lambda, which returns an infinite-length generator
+containing all of the matching hashes. The implementation is very basic, calling the hash functions and triple-digit
+matcher multiple times for the same inputs. This avoids having to manually keep a second list of hashes to check for
+five letter matches.
+
+To avoid the massive slowness that would happen if we recomputed up to 1,000 hashes each step, the hash methods (and
+triple-finding method) themselves are cached using functools.lru_cache. The caches can hold 1024 entries, so
+comfortably hold the results of the 1,000 hash look-forward.
+"""
+
+
 import functools
 import hashlib
 import itertools

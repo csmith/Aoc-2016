@@ -1,5 +1,11 @@
 #!/usr/bin/python3
 
+"""Solution for day 16 of Advent of Code 2016.
+
+This is a straightforward, brute-searching solution. It expands the input as defined in the puzzle, and then
+computes checksums until it finds an odd-length one.
+"""
+
 import itertools
 
 

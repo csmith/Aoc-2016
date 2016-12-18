@@ -1,5 +1,16 @@
 #!/usr/bin/python3
 
+"""Solution for day 15 of Advent of Code 2016.
+
+To simplify a lot of the logic in this solution, disc positions are offset according to their position. So if we have
+discs that start at positions [0, 1, 2] at t=0, when calculating positions the entry for t=0 will read [1, 3, 5]
+because the first disc will have moved one position before the capsule reaches it, the second disc two positions,
+and so on.
+
+Offsetting the positions means that a successful solution is represented as [0, 0, 0] instead of [n, n-1, n-2] etc.
+The latter case becomes particularly ugly when you consider that the discs may wrap around at different places.
+"""
+
 import itertools
 import re
 
@@ -21,7 +32,7 @@ def run(lines):
     combos = zip(*map(positions, discs))
 
     # Find a time when all discs will be at position 0 for the arrival of the capsule.
-    times = (i for i, c in enumerate(combos) if all(p == 0 for p in c))
+    times = (i for i, c in enumerate(combos) if not(sum(c)))
     return next(times)
 
 with open('data/15.txt', 'r') as file:

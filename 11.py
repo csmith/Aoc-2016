@@ -1,5 +1,18 @@
 #!/usr/bin/python3
 
+"""Solution for day 11 of Advent of Code 2016.
+
+Performs a breadth-first search of possible moves. Because of the "elevator stops at each floor to charge" mechanic,
+moves are treated as up or down a single floor.
+
+To avoid backtracking, a set of previously visited states is maintained. Before being recorded, each state is
+'serialised' by stripping away the element names in a deterministic manner. This is because a puzzle with a
+Foo-generator and Bar-chip on floor 1 and a Bar-generator and Foo-chip on floor 2, has an identical solution to
+a puzzle with a Bar-Generator and Foo-chip on floor 1, and a Foo-generator and Bar-chip on floor 2. That is, the
+elements don't matter, just the relative positions of the pairs. This dramatically reduces the number of states
+that have to be checked.
+"""
+
 import itertools, re
 
 # Marker used to show the position of the lift
@@ -33,8 +46,7 @@ items = lambda floor: set(floor) - {lift}
 pickups = lambda items: map(set, itertools.chain(itertools.combinations(items, 2), itertools.combinations(items, 1)))
 
 # Returns an enumeration of possible destinations for the lift (up or down one floor)
-dests = lambda layout: filter(is_floor, [my_floor_index(layout) + 1, my_floor_index(layout) - 1])
-is_floor = lambda i: 0 <= i < len(floors)
+dests = lambda layout: filter(lambda i: 0 <= i < len(floors), [my_floor_index(layout) + 1, my_floor_index(layout) - 1])
 
 # Returns an enumeration of possible moves that could be made from the given state
 moves = lambda layout: itertools.product(pickups(items(my_floor(layout))), dests(layout))
@@ -78,16 +90,15 @@ def run(floors):
             if valid_layout(new_layout):
                 serialised = serialise(new_layout)
                 if serialised not in distances:
-                    distances[serialised] = steps
+                    distances.add(serialised)
                     queued.append(new_layout)
                     if target(new_layout):
-
                         return False
         return queued
 
     # Run repeated iterations until we hit a winning result, then immediately returns the step
     # count.
-    distances = {serialise(floors): 0}
+    distances = {serialise(floors)}
     step = 1
     queued = [floors]
     while True:
