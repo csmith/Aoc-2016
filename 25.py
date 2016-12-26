@@ -5,7 +5,10 @@
 This is a copy of Day 23's solution, with an 'out' instruction added.
 
 Manual testing showed the output repeats regularly, so we just run the program until there are 20 bits output.
+
+TODO: Add a common class for handling the assembly code, as it's now repeated in 3 places.
 """
+
 import itertools
 
 
